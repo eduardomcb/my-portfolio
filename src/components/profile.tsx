@@ -32,7 +32,7 @@ export default async function Profile() {
   const response = await getData();
   // console.log(response);
   return (
-    <div className="mb-10">
+    <section className="mb-10">
       <Avatar className="inline-flex max-w-full w-12 h-12 mb-4">
         <AvatarImage src={response.profile.profilePicture.url} />
         <AvatarFallback>EM</AvatarFallback>
@@ -104,6 +104,6 @@ after:absolute after:inset-0 after:w-[0.125em] after:animate-caret after:bg-slat
         <Link href="https://www.linkedin.com/in/eduardomcb/">CV</Link>
       </Button> */}
       {/* <Button>Meu Curriculo</Button> */}
-    </div>
+    </section>
   );
 }

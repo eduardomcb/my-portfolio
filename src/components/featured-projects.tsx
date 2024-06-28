@@ -36,7 +36,7 @@ export default async function FeaturedProjects() {
       <h1 className="text-lg font-semibold text-slate-900 dark:text-slate-200">
         Projetos em destaque
       </h1>
-      <div className="w-full py-5 grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-x-4 gap-y-6">
+      <div className="w-full pt-5 pb-1 grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-x-4 gap-y-6">
         {response.featuredProjects.map((project) => (
           <ProjectCard
             key={project.title}
