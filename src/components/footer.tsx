@@ -16,7 +16,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { Input } from "./ui/input";
-import axios from "axios";
+// import axios from "axios";
 import { ToastAction } from "./ui/toast";
 
 const contactFormSchema = z.object({
@@ -61,7 +61,10 @@ export default function Footer() {
     // console.log(JSON.stringify(data, null, 2));
 
     try {
-      await axios.post("/api/webhook", data);
+      await fetch("/api/webhook", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
       toast({
         description: "Mensagem enviada com sucesso!",
       });
