@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 import { PageData } from "./types/data";
 
 import { fetchHygraphQuery } from "@/app/utils/fetch-graphql";
+import Profile from "@/components/profile";
 
 const getPageData = async (): Promise<PageData> => {
   const query = `
@@ -51,7 +52,7 @@ export default async function Home() {
   return (
     <div className="mx-auto max-w-3xl">
       <div className="min-h-screen px-3 md:px-16 flex flex-col bg-slate-200 dark:bg-slate-900">
-        <Header />
+        <Header profile={profile} />
         <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px]" />
         <Knowledge knowledges={profile.knowledges} />
         <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px]" />

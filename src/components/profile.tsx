@@ -10,31 +10,18 @@ import {
 
 import { Github, Linkedin, Twitter } from "lucide-react";
 import Link from "next/link";
+import { Profile as IProfile } from "../app/types/data";
 
-const getData = async () => {
-  const query = `
-  query MyQuery {
-    profile(where: { id: "clxvbg2k60g1x0dklwyc503ve" }) {
-      id
-      description
-      username
-      profilePicture {
-        url
-      }
-    }
-  }
-`;
-
-  return fetchHygraphQuery(query);
+type ProfileProps = {
+  profile: IProfile;
 };
 
-export default async function Profile() {
-  const response = await getData();
-  // console.log(response);
+export default async function Profile({ profile }: ProfileProps) {
+  // console.log(profile);
   return (
     <section className="mb-10">
       <Avatar className="inline-flex max-w-full w-12 h-12 mb-4">
-        <AvatarImage src={response.profile.profilePicture.url} />
+        <AvatarImage src={profile.profilePicture.url} />
         <AvatarFallback>EM</AvatarFallback>
       </Avatar>
       <div className="mb-5 flex flex-col items-center">
@@ -42,10 +29,10 @@ export default async function Profile() {
           className="relative w-[max-content] before:absolute before:inset-0 before:animate-typewriter before:bg-slate-200 dark:before:bg-slate-900
 after:absolute after:inset-0 after:w-[0.125em] after:animate-caret after:bg-slate-900 dark:after:bg-slate-200 mb-1 text-2xl font-bold text-slate-900 dark:text-slate-200"
         >
-          {response.profile.username}
+          {profile.username}
         </h1>
         <p className="text-sm text-slate-700 dark:text-slate-400">
-          {response.profile.description}
+          {profile.description}
         </p>
       </div>
       <div className="flex flex-row justify-center space-x-2">
