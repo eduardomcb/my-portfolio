@@ -1,5 +1,3 @@
-"use client";
-
 import Footer from "@/components/footer";
 // import "../global.css"
 // import { useEffect } from "react";
