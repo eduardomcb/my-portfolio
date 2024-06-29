@@ -19,7 +19,7 @@ type ProfileProps = {
 export default async function Profile({ profile }: ProfileProps) {
   // console.log(profile);
   return (
-    <section className="mb-10">
+    <section className="mb-10 text-center">
       <Avatar className="inline-flex max-w-full w-12 h-12 mb-4">
         <AvatarImage src={profile.profilePicture.url} />
         <AvatarFallback>EM</AvatarFallback>

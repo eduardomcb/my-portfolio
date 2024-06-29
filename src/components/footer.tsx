@@ -14,9 +14,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/components/ui/use-toast";
+import { useToast } from "@/components/ui/use-toast";
 import { Input } from "./ui/input";
 import axios from "axios";
+import { ToastAction } from "./ui/toast";
 
 const contactFormSchema = z.object({
   username: z
@@ -49,29 +50,38 @@ const contactFormSchema = z.object({
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 export default function Footer() {
+  const { toast } = useToast();
+
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     mode: "onChange",
   });
 
   async function onSubmit(data: ContactFormValues) {
-    console.log(JSON.stringify(data, null, 2));
+    // console.log(JSON.stringify(data, null, 2));
 
     try {
       await axios.post("/api/webhook", data);
-      /* toast.success("Mensagem enviada com sucesso!");
-      reset(); */
+      toast({
+        description: "Mensagem enviada com sucesso!",
+      });
     } catch (error) {
-      // toast.error("Ocorreu um erro ao enviar a mensagem. Tente novamente.");
+      toast({
+        variant: "destructive",
+        title: "Ops! Alguma coisa deu errado.",
+        description: "Ocorreu um erro ao enviar a mensagem. Tente novamente.",
+        action: (
+          <ToastAction
+            altText="Try again"
+            onClick={() => {
+              onSubmit(data);
+            }}
+          >
+            Tentar novamente
+          </ToastAction>
+        ),
+      });
     }
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
   }
 
   return (

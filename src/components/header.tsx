@@ -1,12 +1,7 @@
 import { ModeToggle } from "./ui/mode-toggle";
 import Profile from "./profile";
-import { Profile as IProfile } from "../app/types/data";
 
-type ProfileDataProps = {
-  profile: IProfile;
-};
-
-export default function Header({ profile }: ProfileDataProps) {
+export default function Header() {
   return (
     <header className="pt-6 text-center">
       <div className="mb-2 flex justify-end">
@@ -14,7 +9,7 @@ export default function Header({ profile }: ProfileDataProps) {
           <ModeToggle />
         </div>
       </div>
-      <Profile profile={profile} />
+      {/* <Profile profile={profile} /> */}
     </header>
   );
 }

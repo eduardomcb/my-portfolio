@@ -3,7 +3,7 @@ import Knowledge from "@/components/knowledge";
 import FeaturedProjects from "@/components/featured-projects";
 import { Separator } from "@/components/ui/separator";
 import Footer from "@/components/footer";
-import { PageData } from "./types/data";
+import { PageData } from "../types/data";
 
 import { fetchHygraphQuery } from "@/app/utils/fetch-graphql";
 import Profile from "@/components/profile";
@@ -50,16 +50,13 @@ const getPageData = async (): Promise<PageData> => {
 export default async function Home() {
   const { profile } = await getPageData();
   return (
-    <div className="mx-auto max-w-3xl">
-      <div className="min-h-screen px-3 md:px-16 flex flex-col bg-slate-200 dark:bg-slate-900">
-        <Header profile={profile} />
-        <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px]" />
-        <Knowledge knowledges={profile.knowledges} />
-        <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px]" />
-        <FeaturedProjects featuredProjects={profile.featuredProjects} />
-        <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px]" />
-        <Footer />
-      </div>
-    </div>
+    <>
+      <Profile profile={profile} />
+      <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px]" />
+      <Knowledge knowledges={profile.knowledges} />
+      <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px]" />
+      <FeaturedProjects featuredProjects={profile.featuredProjects} />
+      <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px]" />
+    </>
   );
 }
