@@ -16,11 +16,12 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 import { Input } from "./ui/input";
+import axios from "axios";
 
-const FormSchema = z.object({
+const contactFormSchema = z.object({
   username: z
     .string({
-        required_error: "Preencha com o seu nome"
+      required_error: "Preencha com o seu nome",
     })
     .min(3, {
       message: "O nome de usuário deve ter pelo menos 3 caracteres.",
@@ -30,28 +31,39 @@ const FormSchema = z.object({
     }),
   email: z
     .string({
-      required_error: "Preencha com o seu email"
+      required_error: "Preencha com o seu email",
     })
     .email(),
   content: z
     .string({
-        required_error: "Preencha com o conteúdo da mensagem"
+      required_error: "Preencha com o conteúdo da mensagem",
     })
     .min(10, {
       message: "O conteúdo deve ter pelo menos 10 caracteres.",
     })
     .max(160, {
       message: "O conteúdo não deve ter mais de 30 caracteres.",
-    }).optional(),
+    }),
 });
 
+type ContactFormValues = z.infer<typeof contactFormSchema>;
+
 export default function Footer() {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactFormSchema),
     mode: "onChange",
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  async function onSubmit(data: ContactFormValues) {
+    console.log(JSON.stringify(data, null, 2));
+
+    try {
+      await axios.post("/api/webhook", data);
+      /* toast.success("Mensagem enviada com sucesso!");
+      reset(); */
+    } catch (error) {
+      // toast.error("Ocorreu um erro ao enviar a mensagem. Tente novamente.");
+    }
     toast({
       title: "You submitted the following values:",
       description: (
@@ -113,12 +125,13 @@ export default function Footer() {
                   />
                 </FormControl>
                 <FormDescription>
-                  You can <span>@mention</span> other users and organizations.
+                  Envie uma mensagem e vamos nos conectar!
                 </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
+
           <Button type="submit">Enviar mensagem</Button>
         </form>
       </Form>

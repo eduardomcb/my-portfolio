@@ -9,18 +9,10 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import Link from "next/link";
+import { FeaturedProject as IFeaturedProject } from "../../app/types/data";
 
 type ProjectCardProps = {
-  project: {
-    cover: string;
-    title: string;
-    shortDescription: string;
-    knowledges: {
-      name: string;
-    }[];
-    repository: string;
-    deploy: string;
-  };
+  project: IFeaturedProject;
 };
 
 export default function ProjectCard({ project }: ProjectCardProps) {

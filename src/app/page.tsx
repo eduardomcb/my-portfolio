@@ -3,16 +3,59 @@ import Knowledge from "@/components/knowledge";
 import FeaturedProjects from "@/components/featured-projects";
 import { Separator } from "@/components/ui/separator";
 import Footer from "@/components/footer";
+import { PageData } from "./types/data";
 
-export default function Home() {
+import { fetchHygraphQuery } from "@/app/utils/fetch-graphql";
+
+const getPageData = async (): Promise<PageData> => {
+  const query = `
+  query MyProfileQuery {
+  profile(where: {id: "clxvbg2k60g1x0dklwyc503ve"}) {
+    id
+    description
+    username
+    profilePicture {
+      url
+    }
+    knowledges {
+      id
+      name
+      iconSvg
+      startDate
+    }
+    featuredProjects {
+      id
+      title
+      shortDescription
+      cover {
+        url
+      }
+      repository
+      deploy
+      knowledges {
+        id
+        name
+        startDate
+        iconSvg
+      }
+    }
+  }
+}
+`;
+
+  return fetchHygraphQuery(query, 60);
+};
+
+export default async function Home() {
+  const { profile } = await getPageData();
   return (
     <div className="mx-auto max-w-3xl">
       <div className="min-h-screen px-3 md:px-16 flex flex-col bg-slate-200 dark:bg-slate-900">
         <Header />
         <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px]" />
-        <Knowledge />
+        <Knowledge knowledges={profile.knowledges} />
         <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px]" />
-        <FeaturedProjects />
+        <FeaturedProjects featuredProjects={profile.featuredProjects} />
         <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px]" />
         <Footer />
       </div>
