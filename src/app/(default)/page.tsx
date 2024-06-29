@@ -1,3 +1,4 @@
+"use client";
 import Header from "@/components/header";
 import Knowledge from "@/components/knowledge";
 import FeaturedProjects from "@/components/featured-projects";
