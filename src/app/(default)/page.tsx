@@ -1,7 +1,7 @@
 import Knowledge from "@/components/knowledge";
 import FeaturedProjects from "@/components/featured-projects";
 import { Separator } from "@/components/ui/separator";
-import { PageData } from "./types/data";
+import { PageData } from "../types/data";
 
 import { fetchHygraphQuery } from "@/app/utils/fetch-graphql";
 import Profile from "@/components/profile";

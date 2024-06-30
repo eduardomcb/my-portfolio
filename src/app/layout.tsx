@@ -4,7 +4,6 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/header";
-import Footer from "@/components/footer";
 
 const ubuntu = Ubuntu({ weight: "300", subsets: ["latin"] });
 
@@ -31,7 +30,6 @@ export default function RootLayout({
             <div className="min-h-screen px-3 md:px-16 flex flex-col bg-slate-200 dark:bg-slate-900">
               <Header />
               {children}
-              <Footer />
             </div>
           </div>
         </ThemeProvider>

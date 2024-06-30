@@ -1,15 +1,29 @@
+"use client";
 import { ModeToggle } from "./ui/mode-toggle";
-import Profile from "./profile";
+import { Button } from "./ui/button";
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
+  const isHomePage = pathname.endsWith("/");
   return (
-    <header className="pt-6 text-center">
-      <div className="mb-2 flex justify-end">
-        <div className="ml-auto inline-flex items-center justify-center">
-          <ModeToggle />
-        </div>
+    <header className="pt-6">
+      <div
+        className={`flex items-center ${
+          isHomePage ? "justify-end" : "justify-between"
+        }`}
+      >
+        {!isHomePage && (
+          <Button variant="outline" size="icon" asChild>
+            <Link href="/" passHref>
+              <ChevronLeft className="h-4 w-4" />
+            </Link>
+          </Button>
+        )}
+        <ModeToggle />
       </div>
-      {/* <Profile profile={profile} /> */}
     </header>
   );
 }
