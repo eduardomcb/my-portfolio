@@ -1,4 +1,3 @@
-import { fetchHygraphQuery } from "@/app/utils/fetch-graphql";
 import ProjectCard from "./ui/project-card";
 import { Button } from "./ui/button";
 import { ChevronRight } from "lucide-react";

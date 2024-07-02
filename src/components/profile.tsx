@@ -1,4 +1,3 @@
-import { fetchHygraphQuery } from "@/app/utils/fetch-graphql";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "@/components/ui/button";
 import {

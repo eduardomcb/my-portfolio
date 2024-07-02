@@ -25,7 +25,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             height={200}
             className="h-full rounded-lg"
             alt={`Thumbnail do projeto ${project.title}`}
-            src="https://raw.githubusercontent.com/eduardomcb/tictactoe-compose-multiplatform/master/screenshots/demo_web_and_desktopApp.png" /* {project.thumbnail.url} */
+            src={project.cover.url}
             unoptimized
           />
         </div>

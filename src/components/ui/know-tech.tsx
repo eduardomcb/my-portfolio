@@ -15,7 +15,7 @@ export default function KnowTech({ tech }: KnownTechProps) {
   ).replace("há", "");
 
   return (
-    <Card className="p-4">
+    <Card className="h-24 p-4">
       <div className="flex items-center justify-between text-slate-900 dark:text-slate-200">
         <p className="font-medium">{tech.name}</p>
         <CMSIcon icon={tech.iconSvg} />

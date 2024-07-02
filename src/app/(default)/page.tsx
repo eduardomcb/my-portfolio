@@ -16,13 +16,13 @@ const getPageData = async (): Promise<PageData> => {
     profilePicture {
       url
     }
-    knowledges {
+    knowledges(first: 50) {
       id
       name
       iconSvg
       startDate
     }
-    featuredProjects {
+    featuredProjects(first: 50) {
       id
       title
       shortDescription
@@ -42,7 +42,7 @@ const getPageData = async (): Promise<PageData> => {
 }
 `;
 
-  return fetchHygraphQuery(query, 60);
+  return fetchHygraphQuery(query, 0);
 };
 
 export default async function Home() {
