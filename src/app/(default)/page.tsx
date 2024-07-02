@@ -50,11 +50,11 @@ export default async function Home() {
   return (
     <>
       <Profile profile={profile} />
-      <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px]" />
+      <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px] max-w-lg mx-auto" />
       <Knowledge knowledges={profile.knowledges} />
-      <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px]" />
+      <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px] max-w-lg mx-auto" />
       <FeaturedProjects featuredProjects={profile.featuredProjects} />
-      <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px]" />
+      <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px] max-w-lg mx-auto" />
     </>
   );
 }

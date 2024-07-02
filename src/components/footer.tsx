@@ -88,7 +88,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="h-auto w-full flex flex-col items-center justify-center pb-16">
+    <footer className="h-auto w-full flex flex-col items-center justify-center py-16 md:px-16">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

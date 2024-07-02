@@ -9,7 +9,7 @@ type KnowledgeProps = {
 
 export default async function Knowledge({ knowledges }: KnowledgeProps) {
   return (
-    <section className="mb-10">
+    <section className="md:px-16 mb-10">
       <h1 className="text-lg font-semibold text-slate-900 dark:text-slate-200">
         Conhecimentos
       </h1>
