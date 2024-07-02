@@ -132,7 +132,7 @@ export default function Footer() {
               <FormItem>
                 <FormControl>
                   <Textarea
-                    placeholder="Mesagem..."
+                    placeholder="Mensagem..."
                     className="resize-none"
                     {...field}
                   />
