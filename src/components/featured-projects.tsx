@@ -24,8 +24,7 @@ export default async function FeaturedProjects({
         ))}
       </div>
       <p className="flex items-center">
-        {/* <span className="text-slate-400">Se interessou?</span> */}
-        <Button variant="link" className="inline-flex">
+        <Button variant="link">
           Ver todos <ChevronRight className="ml-2 h-4 w-4" />
         </Button>
       </p>

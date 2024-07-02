@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { Card, CardTitle, CardDescription, CardContent } from "./card";
 import { Badge } from "./badge";
@@ -70,8 +71,15 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {/* Deploy Button */}
         <HoverCard>
           <HoverCardTrigger asChild>
-            <Button asChild>
-              <Link href={project.deploy} target="_blank" rel="noreferrer">
+            <Button
+              asChild
+              className={!project.deploy ? "cursor-not-allowed opacity-50" : ""}
+            >
+              <Link
+                href={project.deploy || ""}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <SquareArrowOutUpRight className="mr-2 h-4 w-4" />
                 Deploy
               </Link>
@@ -80,10 +88,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <HoverCardContent className="w-80">
             <div className="space-y-1">
               <h4 className="text-sm font-semibold">
-                Ver aplicação em funcionamento
+                {project.deploy
+                  ? "Ver aplicação em funcionamento"
+                  : "Deploy não disponível"}
               </h4>
               <p className="text-sm">
-                Veja uma demonstração ao vivo deste projeto.
+                {project.deploy
+                  ? "Veja uma demonstração ao vivo deste projeto."
+                  : "Nenhuma demonstração ao vivo disponível no momento."}
               </p>
             </div>
           </HoverCardContent>

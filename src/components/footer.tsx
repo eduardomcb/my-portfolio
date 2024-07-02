@@ -99,7 +99,7 @@ export default function Footer() {
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-lg font-semibold">
+                <FormLabel className="text-lg font-semibold text-slate-900 dark:text-slate-200">
                   Que tal trabalharmos juntos?
                   <br />
                   Entre em contato.
@@ -149,7 +149,9 @@ export default function Footer() {
         </form>
       </Form>
 
-      <p className="text-sm pt-16">© Eduardo Mateus. All rights reserved.</p>
+      <p className="text-sm pt-16 text-slate-900 dark:text-slate-200">
+        © Eduardo Mateus. All rights reserved.
+      </p>
     </footer>
   );
 }
