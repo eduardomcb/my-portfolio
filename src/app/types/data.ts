@@ -31,3 +31,7 @@ export type FeaturedProject = {
 export type PageData = {
   profile: Profile;
 };
+
+export type ProjectsPageData = {
+  featuredProjects: FeaturedProject[]
+}

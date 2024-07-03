@@ -16,7 +16,7 @@ type ProjectCardProps = {
   project: IFeaturedProject;
 };
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <Card className="h-auto p-4">
       <div className="flex flex-row">
@@ -103,4 +103,40 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </div>
     </Card>
   );
-}
+};
+
+const ProjectCardSimple = ({ project }: ProjectCardProps) => {
+  return (
+    <Card className="max-h-[456px] w-auto p-4">
+      <div className="flex flex-col">
+        <div className="h-auto w-full overflow-hidden">
+          <Image
+            width={340}
+            height={200}
+            className="w-full rounded-lg"
+            alt={`Thumbnail do projeto ${project.title}`}
+            src={project.cover.url}
+            unoptimized
+          />
+        </div>
+
+        <div className="flex-1 flex flex-col pt-4 space-y-2">
+          <CardTitle>{project.title}</CardTitle>
+          <CardDescription className="line-clamp-6">
+            {project.shortDescription}
+          </CardDescription>
+
+          <span className="w-full">
+            {project.knowledges.map((knowledge) => (
+              <Badge key={knowledge.name} variant="secondary" className="m-0.5">
+                {knowledge.name}
+              </Badge>
+            ))}
+          </span>
+        </div>
+      </div>
+    </Card>
+  );
+};
+
+export { ProjectCard, ProjectCardSimple };

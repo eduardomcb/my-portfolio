@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/header";
+import Transition from "./transition";
 
 const ubuntu = Ubuntu({ weight: "300", subsets: ["latin"] });
 
@@ -29,7 +30,7 @@ export default function RootLayout({
           <div className="mx-auto max-w-[728px]">
             <div className="min-h-screen px-3 md:px-16 mx-auto flex flex-col bg-slate-200 dark:bg-slate-900">
               <Header />
-              {children}
+              <Transition>{children}</Transition>
             </div>
           </div>
         </ThemeProvider>

@@ -1,93 +1,53 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  HoverCard,
-  HoverCardTrigger,
-  HoverCardContent,
-} from "@/components/ui/hover-card";
-import { SquareArrowOutUpRight, Github } from "lucide-react";
-import Link from "next/link";
+import { ProjectCardSimple } from "@/components/ui/project-card";
+import { Separator } from "@/components/ui/separator";
+import { fetchHygraphQuery } from "@/app/utils/fetch-graphql";
+import { ProjectsPageData } from "@/app/types/data";
 
-export const metadata = {
-  title: "Project",
-  description: "Informações do projeto",
+const getProjectsData = async (): Promise<ProjectsPageData> => {
+  const query = `
+query FeaturedProjectsQuery {
+  featuredProjects(first: 50) {
+    id
+    title
+    shortDescription
+    repository
+    deploy
+    cover {
+      url
+    }
+    knowledges {
+      id
+      name
+      iconSvg
+      startDate
+    }
+  }
+}
+`;
+
+  return fetchHygraphQuery(query, 0);
 };
 
-export default function Projects() {
+export default async function Projects() {
+  const { featuredProjects } = await getProjectsData();
   return (
-    <div className="py-24 flex flex-col items-center">
-      <Card className="w-[380px]">
-        <CardHeader>
-          <CardTitle>TicTacToe Compose Multiplatform</CardTitle>
-          <CardDescription>
-            Um elegante jogo da velha desenvolvido com Compose Multiplatform.
-            Jogue no seu navegador, em dispositivos Android ou desktop,
-            aproveitando a flexibilidade do Compose para uma experiência de
-            usuário interativa e elegante. As funcionalidades incluem jogar
-            contra a máquina, botões para troca de tema e reinício do jogo.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {Array.from({ length: 8 }).map((_, index) => (
-            <Badge key={index} variant="secondary" className="m-0.5">
-              Next.js
-            </Badge>
-          ))}
-        </CardContent>
-      </Card>
+    <div className="py-16 flex flex-col items-center">
+      <h3 className="text-4xl font-semibold text-slate-900 dark:text-slate-200">
+        Meus projetos
+      </h3>
+      <p className="text-slate-700 dark:text-slate-400 text-center max-w-[640px] my-6 text-sm sm:text-base">
+        Aqui você pode conferir diversos projetos que realizei. Explore à
+        vontade para descobrir as técnicas utilizadas, as tecnologias aplicadas
+        e as funcionalidades que implementei.
+      </p>
 
-      <div className="flex flex-row pt-4 justify-center space-x-3">
-        {/* Github Button */}
+      <Separator className="mb-8 dark:bg-[#1d283a] bg-[#1d283a]/[0.1] h-[1px] p-[1px] max-w-64 md:max-w-lg mx-auto" />
 
-        <HoverCard>
-          <HoverCardTrigger asChild>
-            <Button variant="secondary" asChild>
-              <Link href="" target="_blank" rel="noreferrer">
-                <Github className="mr-2 h-4 w-4" />
-                Github
-              </Link>
-            </Button>
-          </HoverCardTrigger>
-          <HoverCardContent className="w-80">
-            <div className="space-y-1">
-              <h4 className="text-sm font-semibold">Ver código no GitHub</h4>
-              <p className="text-sm">
-                Acesse o repositório completo deste projeto no GitHub.
-              </p>
-            </div>
-          </HoverCardContent>
-        </HoverCard>
-
-        {/* Deploy Button */}
-        <HoverCard>
-          <HoverCardTrigger asChild>
-            <Button asChild>
-              <Link href="" target="_blank" rel="noreferrer">
-                <SquareArrowOutUpRight className="mr-2 h-4 w-4" />
-                Deploy
-              </Link>
-            </Button>
-          </HoverCardTrigger>
-          <HoverCardContent className="w-80">
-            <div className="space-y-1">
-              <h4 className="text-sm font-semibold">
-                Ver aplicação em funcionamento
-              </h4>
-              <p className="text-sm">
-                Veja uma demonstração ao vivo deste projeto.
-              </p>
-            </div>
-          </HoverCardContent>
-        </HoverCard>
-      </div>
+      <section className="container pt-4 grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-x-4 gap-y-6">
+        {featuredProjects.map((project, i) => (
+          <ProjectCardSimple key={i} project={project} />
+        ))}
+      </section>
     </div>
   );
 }
