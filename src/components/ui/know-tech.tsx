@@ -1,4 +1,3 @@
-import { getRelativeTimeString } from "@/app/utils/get-relative-time";
 import { ReactNode } from "react";
 import { Card } from "./card";
 import CMSIcon from "./cms-icon";
@@ -9,18 +8,14 @@ type KnownTechProps = {
 };
 
 export default function KnowTech({ tech }: KnownTechProps) {
-  const relativeTime = getRelativeTimeString(
-    new Date(tech.startDate),
-    "pt-BR"
-  ).replace("há", "");
-
   return (
-    <Card className="h-24 p-4">
-      <div className="flex items-center justify-between text-slate-900 dark:text-slate-200">
+    <Card className="h-24 p-4 flex flex-col sm:flex-row items-center">
+      <div className="flex-grow text-slate-900 dark:text-slate-200 text-center sm:text-left">
         <p className="font-medium">{tech.name}</p>
+      </div>
+      <div className="flex items-center justify-center h-full mt-2 sm:mt-0">
         <CMSIcon icon={tech.iconSvg} />
       </div>
-      <span>{relativeTime} de experiência</span>
     </Card>
   );
 }
