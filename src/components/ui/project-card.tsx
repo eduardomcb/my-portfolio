@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Card, CardTitle, CardDescription, CardContent } from "./card";
+import { Card, CardTitle, CardDescription } from "./card";
 import { Badge } from "./badge";
 import { Button } from "@/components/ui/button";
 import { Github, SquareArrowOutUpRight } from "lucide-react";
@@ -19,8 +19,8 @@ type ProjectCardProps = {
 const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <Card className="h-auto p-4">
-      <div className="flex flex-row">
-        <div className="h-48 overflow-hidden">
+      <div className="flex flex-col sm:flex-row">
+        <div className="h-48 overflow-hidden flex justify-center">
           <Image
             width={340}
             height={200}
@@ -46,7 +46,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           </span>
         </div>
       </div>
-      <div className="flex flex-row pt-4 justify-center space-x-3">
+      <div className="flex flex-col sm:flex-row pt-4 justify-center space-x-0 sm:space-x-3">
         {/* Github Button */}
 
         <HoverCard>

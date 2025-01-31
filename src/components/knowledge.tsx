@@ -13,7 +13,7 @@ export default async function Knowledge({ knowledges }: KnowledgeProps) {
       <h1 className="text-lg font-semibold text-slate-900 dark:text-slate-200">
         Conhecimentos
       </h1>
-      <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-3 mt-5 pb-1">
+      <div className="w-full grid grid-cols-2 sm:grid-cols-3 gap-3 mt-5 pb-1">
         {knowledges?.map((tech) => (
           <KnowTech key={tech.name} tech={tech} />
         ))}
