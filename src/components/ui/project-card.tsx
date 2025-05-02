@@ -52,10 +52,17 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         <HoverCard>
           <HoverCardTrigger asChild>
             <Button variant="secondary" asChild>
-              <Link href={project.repository} target="_blank" rel="noreferrer">
-                <Github className="mr-2 h-4 w-4" />
-                Github
-              </Link>
+              {!project.repository ? (
+                <span className="cursor-not-allowed opacity-50">
+                  <Github className="mr-2 h-4 w-4" />
+                  Github
+                </span>
+              ) : (
+                <Link href={project.repository} target="_blank" rel="noreferrer">
+                  <Github className="mr-2 h-4 w-4" />
+                  Github
+                </Link>
+              )}
             </Button>
           </HoverCardTrigger>
           <HoverCardContent className="w-80">
@@ -75,14 +82,18 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               asChild
               className={!project.deploy ? "cursor-not-allowed opacity-50" : ""}
             >
-              <Link
-                href={project.deploy || ""}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <SquareArrowOutUpRight className="mr-2 h-4 w-4" />
-                Deploy
-              </Link>
+              {!project.deploy ? (
+                <span className="cursor-not-allowed opacity-50"
+                >
+                  <SquareArrowOutUpRight className="mr-2 h-4 w-4" />
+                  Deploy
+                </span>
+              ) : (
+                <Link href={project.deploy} target="_blank" rel="noreferrer">
+                  <SquareArrowOutUpRight className="mr-2 h-4 w-4" />
+                  Deploy
+                </Link>
+              )}
             </Button>
           </HoverCardTrigger>
           <HoverCardContent className="w-80">

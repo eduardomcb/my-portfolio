@@ -7,7 +7,7 @@ const bodySchema = z.object({
   content: z.string(),
 });
 
-const WEBHOOK_URL = process.env.WEBHOOK_URL!;
+const WEBHOOK_URL = process.env.NEXT_WEBHOOK_URL!;
 
 export async function POST(request: Request) {
   try {

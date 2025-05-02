@@ -99,7 +99,7 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: ["@tailwindcss/postcss"],
 } satisfies Config;
 
 export default config;
