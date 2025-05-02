@@ -99,7 +99,7 @@ const config = {
       },
     },
   },
-  plugins: ["@tailwindcss/postcss"],
+  plugins: [],
 } satisfies Config;
 
 export default config;
